@@ -1,10 +1,10 @@
 <h3 >Sales of <span id="_name"></span> ( <span id = "_id"></span> )</h3>
 
-<form action="{{ route('corporate_sales.store') }}" method="post">
+<form action="{{ route('retailer_sales.store') }}" method="post">
 
     @csrf
 
-    <input type="hidden" value="corporate_info_id" name="corporate_info_id" id="form_corporate_id">
+    <input type="hidden" value="retailer_info_id" name="retailer_info_id" id="form_retailer_id">
 
     <div class="form-group">
         <label for="date">Select Date</label>
@@ -133,7 +133,7 @@
 
     <div class="form-group">
         <label for="consumer_name">Consumer Name</label>
-        <input type="text" class="custom-select @error('consumer_name') is-invalid @enderror"  required id="consumer_name" value="{{ old('consumer_name') }}" name="consumer_name" placeholder="Enter corporate contact">
+        <input type="text" class="custom-select @error('consumer_name') is-invalid @enderror"  required id="consumer_name" value="{{ old('consumer_name') }}" name="consumer_name" placeholder="Enter retailer contact">
         @error('consumer_name')
         <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -166,7 +166,7 @@
     </div>
 
     <input type="submit" class="btn btn-primary mb-2" value="Submit">
-    <a href="{{ url('corporate') }}" class="btn btn-danger mb-2"> Cancel </a>
+    <a href="{{ url('retailer') }}" class="btn btn-danger mb-2"> Cancel </a>
 </form>
 
 <script>

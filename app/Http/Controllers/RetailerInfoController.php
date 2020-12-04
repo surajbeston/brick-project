@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CorporateInfo;
+use App\RetailerInfo;
 use App\Company;
 use App\Sales;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class CorporateInfoController extends Controller
+class RetailerInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,10 +27,10 @@ class CorporateInfoController extends Controller
 
     public function index()
     {
-        /*$corporates = CorporateInfo::paginate(50);
-        return view('corporate.index', compact('corporates'));*/
+        /*$retailers = RetailerInfo::paginate(50);
+        return view('retailer.index', compact('retailers'));*/
 
-        $corporates = CorporateInfo::all();
+        $retailers = RetailerInfo::all();
 
         $phones = [9845423432, 234234233, 234234232, 234234234, 567546453, 5674321, 9845635345, 9823563434, 984354545];
         $trucks = [1234, 5634, 2342, 2342, 5464, 2346, 3452, 8983, 9743, 2354, 4832, 2972, 2345, 3465, 9999];
@@ -38,7 +38,7 @@ class CorporateInfoController extends Controller
 
 
 
-        return view('corporate.index', ["corporates" => $corporates, "phones" => $phones, "trucks" => $trucks, "places" => $places ]);
+        return view('retailer.index', ["retailers" => $retailers, "phones" => $phones, "trucks" => $trucks, "places" => $places ]);
     }
 
     /**
@@ -48,7 +48,7 @@ class CorporateInfoController extends Controller
      */
     public function create()
     {
-        return view('corporate.create');
+        return view('retailer.create');
     }
 
     /**
@@ -59,11 +59,8 @@ class CorporateInfoController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        
         $data = request()->validate([
-            'corporate_code' => 'required|unique:corporate_infos',
+            'retailer_code' => 'required|unique:retailer_infos',
             'name' => 'required',
             'address' => 'required',
             'phone' => 'required|min:5|max:10',
@@ -89,26 +86,26 @@ class CorporateInfoController extends Controller
         }
 
         $data['company_id'] = Auth::user()->company_id;
-        CorporateInfo::create($data);
-        return redirect('corporate')->with('success_msg','Corporate successfully added.');
+        RetailerInfo::create($data);
+        return redirect('retailer')->with('success_msg','Retailer successfully added.');
 
     }
 
 
     public function show(Request $request)
     {
-        $corporate = CorporateInfo::findorFail($request['corporate_id']);
-        $sales = $corporate->sales()->paginate(20);
-        return view('corporate.show',compact('corporate','sales'));
+        $retailer = RetailerInfo::findorFail($request['retailer_id']);
+        $sales = $retailer->sales()->paginate(20);
+        return view('retailer.show',compact('retailer','sales'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CorporateInfo  $corporateInfo
+     * @param  \App\RetailerInfo  $retailerInfo
      * @return \Illuminate\Http\Response
      */
-    public function edit(CorporateInfo $corporateInfo)
+    public function edit(RetailerInfo $retailerInfo)
     {
         //
     }
@@ -117,10 +114,10 @@ class CorporateInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CorporateInfo  $corporateInfo
+     * @param  \App\RetailerInfo  $retailerInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CorporateInfo $corporateInfo)
+    public function update(Request $request, RetailerInfo $retailerInfo)
     {
         //
     }
@@ -128,10 +125,10 @@ class CorporateInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CorporateInfo  $corporateInfo
+     * @param  \App\RetailerInfo  $retailerInfo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CorporateInfo $corporateInfo)
+    public function destroy(RetailerInfo $retailerInfo)
     {
         //
     }

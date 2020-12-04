@@ -48,3 +48,21 @@ Route::post('/corporate','CorporateInfoController@store')->name('corporate.store
 Route::get('/corporate/show','CorporateInfoController@show')->name('corporate.show');
 
 Route::post('/corporate-sales/store','CorporateSalesController@store')->name('corporate_sales.store');
+
+
+
+Route::get('/retailer', 'RetailerInfoController@index')->name('retailer.index');
+Route::get('/retailer/create','RetailerInfoController@create')->name('retailer.create');
+Route::post('/retailer','RetailerInfoController@store')->name('retailer.store');
+Route::get('/retailer/show','RetailerInfoController@show')->name('retailer.show');
+
+Route::post('/retailer-sales/store','RetailerSalesController@store')->name('retailer_sales.store');
+
+
+
+Route::get('/other', 'OtherInfoController@index')->name('other.index');
+Route::get('/other/create','OtherInfoController@create')->name('other.create');
+Route::post('/other','OtherInfoController@store')->name('other.store');
+Route::get('/other/show','OtherInfoController@show')->name('other.show');
+
+Route::post('/other-sales/store','OtherSalesController@store')->name('other_sales.store');

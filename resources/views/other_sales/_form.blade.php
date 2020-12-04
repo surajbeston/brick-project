@@ -1,10 +1,10 @@
 <h3 >Sales of <span id="_name"></span> ( <span id = "_id"></span> )</h3>
 
-<form action="{{ route('corporate_sales.store') }}" method="post">
+<form action="{{ route('other_sales.store') }}" method="post">
 
     @csrf
 
-    <input type="hidden" value="corporate_info_id" name="corporate_info_id" id="form_corporate_id">
+    <input type="hidden" value="other_info_id" name="other_info_id" id="form_other_id">
 
     <div class="form-group">
         <label for="date">Select Date</label>
@@ -133,7 +133,7 @@
 
     <div class="form-group">
         <label for="consumer_name">Consumer Name</label>
-        <input type="text" class="custom-select @error('consumer_name') is-invalid @enderror"  required id="consumer_name" value="{{ old('consumer_name') }}" name="consumer_name" placeholder="Enter corporate contact">
+        <input type="text" class="custom-select @error('consumer_name') is-invalid @enderror"  required id="consumer_name" value="{{ old('consumer_name') }}" name="consumer_name" placeholder="Enter other contact">
         @error('consumer_name')
         <span class="invalid-feedback" role="alert">
     <strong>{{ $message }}</strong>
@@ -142,31 +142,21 @@
     </div>
 
 
-    <div class="form-group">
-        <label for="discount_rate">Discount Rate (%)</label>
-        <input type = "number" max = "100" class="custom-select @error('discount_rate') is-invalid @enderror" required id="discount_rate" value="{{ old('discount_rate') }}" name="discount_rate" placeholder="Discount Percentage">
-        @error('discount_rate')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-    </div>
-
     <hr>
     <hr>
 
     <div class="form-group" >
         <label for="amount">Total Amount</label>
-        <input type="text" class="custom-select @error('amount') is-invalid @enderror"  required id="amount" value="{{ old('amount') }}" name="amount" placeholder="Calculated on quantity, rate and discount." readonly>
+        <input type="text" class="custom-select @error('amount') is-invalid @enderror"  required id="amount" value="{{ old('amount') }}" name="amount" placeholder="Calculated on quantity and rate" readonly>
         @error('amount')
         <span class="invalid-feedback" role="alert">
-            <strong>Add rate, quantity and discount.</strong>
+            <strong>Add rate and quantity.</strong>
         </span>
         @enderror
     </div>
 
     <input type="submit" class="btn btn-primary mb-2" value="Submit">
-    <a href="{{ url('corporate') }}" class="btn btn-danger mb-2"> Cancel </a>
+    <a href="{{ url('other') }}" class="btn btn-danger mb-2"> Cancel </a>
 </form>
 
 <script>
@@ -248,20 +238,14 @@ function add_to_input(input_name, input){
 function calculate_total(){
     var quantity = $("#quantity").val()
     var rate = $("#rate").val()
-    var discount = $("#discount_rate").val() 
-    if (quantity && rate && discount_rate){
-        var total_amount = Number(quantity) * Number(rate)
-        var amount = total_amount - Number(discount)/100 * total_amount 
+    if (quantity && rate){
+        var amount = Number(quantity) * Number(rate)
         $("#amount").val(Math.ceil(amount))
     }
 }
 
 $("#quantity").on("input", () => calculate_total())
 $("#rate").on("input", () => calculate_total())
-$("#discount_rate").on("input", () => {
-    if (Number($("#discount_rate").val()) > 100) $("#discount_rate").val(100)
-    calculate_total()}
-)
 
 </script>
 

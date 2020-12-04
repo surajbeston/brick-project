@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\DealerInfo;
-use App\Sales;
+use App\RetailerSales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class SalesController extends Controller
+class RetailerSalesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,24 +31,14 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        error_log("reached  here");
+        error_log("here hae");
 
-        error_log($request->input("dealer_info_id"));
-        error_log($request->input("date"));
-        error_log($request->input("brick_type"));
-        error_log($request->input("quantity"));
-        error_log($request->input("rate"));
-        error_log($request->input("cash_type"));
-        error_log($request->input("delivery_type"));
-        error_log($request->input("vehicle_no"));
-        error_log($request->input("driver_no"));
-        error_log($request->input("delivery_place"));
+        error_log($request->input("retailer_info_id"));
         error_log($request->input("consumer_name"));
-        error_log($request->input("amount"));
-        error_log($request->input("reward_rate"));
+        error_log($request->input("discount_rate"));
 
         $data = request()->validate([
-            'dealer_info_id' => 'required',
+            'retailer_info_id' => 'required',
             'date' => 'required',
             'brick_type' => 'required',
             'quantity' => 'required',
@@ -60,12 +50,12 @@ class SalesController extends Controller
             'delivery_place'=>'required',
             'consumer_name'=>'required',
             'amount'=>'required',
-            'reward_rate'=>'required',
+            'discount_rate'=>'required',
         ]);
 
         $data['company_id'] = Auth::user()->company_id;
-        Sales::create($data);
-        return redirect()->route('dealer.index')->with('success_msg','Sales added successfully.');
+        RetailerSales::create($data);
+        return redirect()->route('retailer.index')->with('success_msg','Retailer Sales added successfully.');
     }
 
     /**

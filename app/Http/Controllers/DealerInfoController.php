@@ -31,7 +31,15 @@ class DealerInfoController extends Controller
         return view('dealer.index', compact('dealers'));*/
 
         $dealers = DealerInfo::all();
-        return view('dealer.index', compact('dealers'));
+        
+
+        $phones = [9845423432, 234234233, 234234232, 234234234, 567546453, 5674321, 9845635345, 9823563434, 984354545];
+        $trucks = [1234, 5634, 2342, 2342, 5464, 2346, 3452, 8983, 9743, 2354, 4832, 2972, 2345, 3465, 9999];
+        $places = ["Itahari", "Dharan", "Damak", "Dhankuta", "Kathmandu", "Pokhara", "Inaruwa", "Narayanghat", "Dhangadhi", "Bhaktapur", "Lalitpur"];
+
+
+
+        return view('dealer.index', ["dealers" => $dealers, "phones" => $phones, "trucks" => $trucks, "places" => $places ]);
     }
 
     /**
@@ -52,8 +60,6 @@ class DealerInfoController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $data = request()->validate([
             'dealer_code' => 'required|unique:dealer_infos',
             'name' => 'required',

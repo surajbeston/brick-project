@@ -23,6 +23,11 @@
     -->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/font-awesome.min.css') }}">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.3"></script>
+
+
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

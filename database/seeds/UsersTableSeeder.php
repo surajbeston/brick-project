@@ -24,5 +24,9 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('admin123'),
             'created_at' =>NOW()
         ]);
+
+        
+
+
     }
 }

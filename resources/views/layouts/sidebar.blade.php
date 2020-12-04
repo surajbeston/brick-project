@@ -15,14 +15,11 @@
                 <ul>
                     <li> <a href="{{ url('dealer') }}"> Dealer </a> </li>
                     <li> <a href="{{ url('corporate') }}"> Corporate </a></li>
-                    <li> <a href="#"> Retailer </a></li>
-                    <li> <a href="#"> Other </a></li>
+                    <li> <a href="{{ url('retailer') }}"> Retailer </a></li>
+                    <li> <a href="{{ url('other') }}"> Other </a></li>
                 </ul>
 
             </li>
-
-
-
             <li class="app-sidebar__heading"> <a href="#"> Transaction </a></li>
             <li class="app-sidebar__heading">  <a href="#"> Account </a> </li>
             <li class="app-sidebar__heading"> <a href="#"> Reports </a> </li>
